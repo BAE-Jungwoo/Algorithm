@@ -1,0 +1,19 @@
+#include<iostream>
+using namespace std;
+
+int main(int argc, char** argv)
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    
+    long long K,P,N;
+    cin >> K >> P >> N;
+
+    while(N--) {
+        K *= P;
+        K %= 1000000007; // mod 연산
+    }
+    cout << K;
+    
+    return 0;
+}
