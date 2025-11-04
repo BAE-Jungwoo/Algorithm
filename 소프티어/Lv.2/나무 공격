@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+int main(int argc, char** argv)
+{
+    int n, m;
+    cin >> n >> m;
+
+    int destroy;
+    bool map[101][101] = {0, };
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < m; j++) {
+            cin >> destroy;
+            if(destroy == 1) {
+                map[i][j] = true;
+            }
+        }
+    }
+
+    int L1, R1, L2, R2;
+    cin >> L1 >> R1;
+    cin >> L2 >> R2;
+    for(int i = L1 - 1; i <= R1 - 1; i++) {
+        for(int j = 0; j < m; j++) {
+            if(map[i][j] == true) {
+                map[i][j] = false;
+                break;
+            }
+        }
+    }
+
+    for(int i = L2 - 1; i <= R2 - 1; i++) {
+        for(int j = 0; j < m; j++) {
+            if(map[i][j] == true) {
+                map[i][j] = false;
+                break;
+            }
+        }
+    }
+
+    int check = 0;
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < m; j++) {
+            if(map[i][j] == true)
+                check++;
+        }
+    }
+    cout << check;
+    
+    return 0;
+}
