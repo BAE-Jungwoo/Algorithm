@@ -1,1 +1,46 @@
+#include<iostream>
+#include<vector>
 
+using namespace std;
+
+int main(int argc, char** argv)
+{
+    int num;
+    vector<int> v;
+    for(int i=0; i<8; i++) {
+        cin >> num;
+        v.push_back(num);
+    }
+
+    int cnt = 0;
+    for(int j=0; j < v.size(); j++) {
+        if(v[0] == 1) {
+            if(v[j] == j + 1) {
+                if(j == 7) {
+                    cout << "ascending";
+                }
+            }
+            else {
+                cout << "mixed";
+                break;
+            }
+        }
+        else if(v[0] == 8) {
+            if(v[j] == 8 - j) {
+                cnt++;
+                if(j == 7) {
+                    cout << "descending";
+                }
+            }
+            else {
+                cout << "mixed";
+                break;
+            }
+        }
+        else {
+            cout << "mixed";
+            break;
+        }
+    }
+    return 0;
+}
