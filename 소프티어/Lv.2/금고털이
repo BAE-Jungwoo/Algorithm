@@ -1,1 +1,42 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
 
+using namespace std;
+
+bool cmp(pair<int, int> a, pair<int, int> b) {
+    return a.second > b.second;
+}
+
+int main(int argc, char** argv)
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    
+    int weight, num;
+    cin >> weight >> num;
+
+    vector<pair<int, int>> v;
+    for(int i = 0; i < num; i++) {
+        int m, p;
+        cin >> m >> p;
+        v.push_back(make_pair(m, p));
+    }
+    sort(v.begin(), v.end(), cmp);
+
+    int current = 0, result = 0;
+    for(int j = 0; j < v.size(); j++) {
+        while(current < weight) {
+            if(v[j].first != 0) {
+                current++;
+                v[j].first--;
+                result+=v[j].second;
+            }
+            else {
+                break;
+            }
+        }
+    }
+    cout << result;
+    return 0;
+}
