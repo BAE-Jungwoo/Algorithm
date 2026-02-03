@@ -41,11 +41,11 @@ int main() {
 			max = false;
 
 		if (max) {
-			if (minTime > time) {				// 시간이 같으면 더 높은 높이 선택
+			if (minTime > time) {				// 더 빠른 시간 발견
 				minTime = time;
 				maxHeight = h;
 			}
-			else if(minTime == time && maxHeight < h) {
+			else if (minTime == time && maxHeight < h) {		// 시간이 같으면 더 높은 높이
 				maxHeight = h;
 			}
 		}
