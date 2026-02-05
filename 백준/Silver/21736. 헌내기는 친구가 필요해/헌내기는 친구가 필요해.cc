@@ -11,18 +11,18 @@ void bfs(int start_x, int start_y, vector<vector<char>>& campus) {
 	queue<pair<int, int>> q;
 	q.push({ start_x, start_y });
 	visited[start_x][start_y] = true;
-	int dx[] = { -1, 1, 0, 0 };
-	int dy[] = { 0, 0, -1, 1 };
+	int dx[] = { -1, 1, 0, 0 };		// x 변화량 (배열의 행 인덱스 → 상하)
+	int dy[] = { 0, 0, -1, 1 };		// y 변화량 (배열의 열 인덱스 → 좌우)
 	int count = 0;
 
 	while (!q.empty()) {
 		pair<int, int> current = q.front();
 		q.pop();
-		for (int i = 0; i < 4; i++) {
-			int nx = current.first + dx[i];
-			int ny = current.second + dy[i];
-			if (nx >= 0 && nx < n && ny >= 0 && ny < m) {
-				if (!visited[nx][ny] && campus[nx][ny] != 'X') {
+		for (int i = 0; i < 4; i++) {								// 상하좌우 탐색
+			int nx = current.first + dx[i];							// 다음 x 좌표
+			int ny = current.second + dy[i];						// 다음 y 좌표
+			if (nx >= 0 && nx < n && ny >= 0 && ny < m) {			// 범위 체크
+				if (!visited[nx][ny] && campus[nx][ny] != 'X') {	// 미방문 & 벽이 아닌 경우
 					visited[nx][ny] = true;
 					q.push({ nx, ny });
 					if (campus[nx][ny] == 'P') {
@@ -59,4 +59,5 @@ int main() {
 
 	bfs(start_x, start_y, campus);
 	return 0;
+
 }
