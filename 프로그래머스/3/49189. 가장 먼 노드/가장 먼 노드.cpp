@@ -18,7 +18,7 @@ void bfs(int start, int n, vector<vector<int>>& arr) {
         int current = q.front();
         q.pop();
 
-        for (int i = 1; i <= n; i++) {
+        for (int i = 2; i <= n; i++) {
             if (arr[current][i] == 0) continue; // 연결되어 있지 않으면 패스
             if (visited[i] == 1) continue; // 이미 방문했으면 패스
 
