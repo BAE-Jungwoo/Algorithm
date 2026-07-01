@@ -9,7 +9,7 @@ int furthest[20001] = { 0 }; // furthest[i] = i번째 노드까지의 거리
 int count = 0;
 int max_distance = 0;
 
-void bfs(int start, int n, vector<vector<int>>& arr) {
+void bfs(int start, int n, const vector<vector<int>>& arr) {
     queue<int> q;
     q.push(start);
     visited[start] = 1;
