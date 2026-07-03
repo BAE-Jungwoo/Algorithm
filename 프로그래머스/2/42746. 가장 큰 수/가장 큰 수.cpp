@@ -1,0 +1,26 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+bool compare(string& a, string& b) {
+    return a + b > b + a;
+}
+
+string solution(vector<int> numbers) {
+    string answer = "";
+    vector<string> str;
+    for(int i = 0; i < numbers.size(); i++) {
+        str.push_back(to_string(numbers[i]));
+    }
+    sort(str.begin(), str.end(), compare);
+
+    int cnt = 0;
+    for(auto& s : str) {
+        answer += s;
+        if (stoi(s) == 0) cnt++;
+    }
+    if(str.size() == cnt) return to_string(0);
+    return answer;
+}
