@@ -25,7 +25,7 @@ int solution(string name) {
         // 상하 이동 횟수 계산
         answer += alphabet_map[name[i]];
         int next_index = i + 1;
-        while(next_index < length && name[next_index] == 'A') {
+        while(name[next_index] == 'A') {
             next_index++;
         }
 
