@@ -20,23 +20,24 @@ int solution(vector<vector<int> > maps)
 
     int N = map.size(), M = map[0].size(); // 행, 열
     queue<pair<int, int>> path;
-    path.push({ 1, 1 }); // 시작점 (y, x)
+    path.push({ 1, 1 }); // (y, x)
     visited[1][1] = true;
     dist[1][1] = 1;
 
     while (!path.empty()) {
         pair<int, int> temp = path.front();
+        int y = temp.first, x = temp.second;
         path.pop();
 
         for (int i = 0; i < 4; i++) {   // 좌, 우, 상, 하
-            int ny = temp.first + dy[i];
-            int nx = temp.second + dx[i];
+            int ny = y + dy[i];
+            int nx = x + dx[i];
 
             if (nx >= 1 && nx < M && ny >= 1 && ny < N) {
                 if (map[ny][nx] == 1 && !visited[ny][nx]) {
                     visited[ny][nx] = true;
                     path.push({ ny, nx });
-                    dist[ny][nx] = dist[temp.first][temp.second] + 1;
+                    dist[ny][nx] = dist[y][x] + 1;
 
                     if (ny == N - 1 && nx == M - 1)
                         return dist[ny][nx];
