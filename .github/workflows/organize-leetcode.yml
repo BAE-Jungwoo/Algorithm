@@ -1,0 +1,62 @@
+name: Organize LeetCode solutions
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: organize-leetcode-main
+  cancel-in-progress: false
+
+jobs:
+  organize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the latest main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Move LeetHub problem folders under LeetCode
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git pull --ff-only origin main
+          mkdir -p LeetCode
+
+          shopt -s nullglob
+          for source in [0-9][0-9][0-9][0-9]-*/; do
+            problem="${source%/}"
+            destination="LeetCode/${problem}"
+
+            if [[ -d "${destination}" ]]; then
+              cp -a "${source}." "${destination}/"
+              git rm -r "${problem}"
+            else
+              git mv "${problem}" LeetCode/
+            fi
+          done
+
+          if [[ -f README.md ]]; then
+            sed -i -E \
+              "s#(https://github.com/${GITHUB_REPOSITORY}/tree/main/)([0-9]{4}-[^/)]+/?)#\1LeetCode/\2#g" \
+              README.md
+          fi
+
+          git add -A
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Organize LeetCode solutions"
+          git push origin main
