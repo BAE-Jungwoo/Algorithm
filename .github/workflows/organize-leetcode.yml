@@ -45,6 +45,12 @@ jobs:
             fi
           done
 
+          # LeetHub updates the root README after each submission.
+          # Restore the approved README exactly as it exists in this commit.
+          git show \
+            beaa1c604798b3a28126e8dce775a4f37a602fe0:README.md \
+            > README.md
+
           git add -A
           if git diff --cached --quiet; then
             exit 0
