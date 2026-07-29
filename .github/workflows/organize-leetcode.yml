@@ -45,12 +45,6 @@ jobs:
             fi
           done
 
-          if [[ -f README.md ]]; then
-            sed -i -E \
-              "s#(https://github.com/${GITHUB_REPOSITORY}/tree/main/)([0-9]{4}-[^/)]+/?)#\1LeetCode/\2#g" \
-              README.md
-          fi
-
           git add -A
           if git diff --cached --quiet; then
             exit 0
