@@ -10,24 +10,23 @@ public:
     unordered_map<string, string> parent;
     unordered_map<string, string> emailToName;
 
-    // 부모 설정 및 이름 찾는 역할
-    string Find(string &name)
+    // 부모 설정 및 이메일 찾는 역할
+    string Find(string &email)
     {
-        if (parent.find(name) == parent.end())
+        if (parent.find(email) == parent.end())
         {
-            parent[name] = name;
-            return name;
+            parent[email] = email;
         }
-        if (parent[name] == name)
-            return name;
-        return parent[name] = Find(parent[name]);
+        if (parent[email] == email)
+            return email;
+        return parent[email] = Find(parent[email]);
     }
 
-    // 두 이름을 합치는 역할
-    void Union(string &nameX, string &nameY)
+    // 두 이메일을 합치는 역할
+    void Union(string &emailX, string &emailY)
     {
-        string rootX = Find(nameX);
-        string rootY = Find(nameY);
+        string rootX = Find(emailX);
+        string rootY = Find(emailY);
         if (rootX != rootY)
         {
             parent[rootY] = rootX;
@@ -49,13 +48,6 @@ public:
             }
         }
 
-        /*
-        for (auto &eTN : emailToName)
-        {
-            cout << "email: " << eTN.first << ", name: " << eTN.second << endl;
-        }
-        */
-
         unordered_map<string, vector<string>> mergedAccount;
         for (auto &eTN : emailToName)
         {
@@ -63,18 +55,6 @@ public:
             string rootEmail = Find(email);
             mergedAccount[rootEmail].push_back(email);
         }
-
-        /*
-        for (auto &mA : mergedAccount)
-        {
-            cout << "rootEmail: " << mA.first << ", emails: ";
-            for (auto &email : mA.second)
-            {
-                cout << email << " ";
-            }
-            cout << endl;
-        }
-        */
 
         vector<vector<string>> result;
         for (auto &mA : mergedAccount)
