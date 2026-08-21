@@ -7,7 +7,6 @@ public:
     string removeDuplicateLetters(string s)
     {
         string answer;
-        int cnt = 0;
         while (s.length() > 0)
         {
             // 중복이 없으면 push
