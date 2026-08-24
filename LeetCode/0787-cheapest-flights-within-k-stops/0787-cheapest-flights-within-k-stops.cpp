@@ -1,6 +1,7 @@
 #include <queue>
 #include <tuple>
 #include <vector>
+#include <climits>
 using namespace std;
 
 class Solution {
@@ -11,7 +12,7 @@ class Solution {
 	void dijkstra(int& src, int& n, int& dst, int& k) {
 		priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>>> pq;
 		pq.push({0, src, 0});  // <비용, 도시, 경유지 수>
-		dist[src][0] = 0;
+		dist[src][0] = 0;	   // <도시, 경유지 수>
 
 		while (!pq.empty()) {
 			int price = get<0>(pq.top());
@@ -36,7 +37,7 @@ class Solution {
 	int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j <= k + 1; j++) {
-				dist[i][j] = 987654321;
+				dist[i][j] = INT_MAX;
 			}
 		}
 
@@ -47,12 +48,12 @@ class Solution {
 
 		dijkstra(src, n, dst, k);
 
-		int answer = 987654321;
+		int answer = INT_MAX;
 		for (int i = 0; i <= k + 1; i++) {
 			answer = min(answer, dist[dst][i]);
 		}
 
-		if (answer == 987654321) return -1;
+		if (answer == INT_MAX) return -1;
 		return answer;
 	}
 };
