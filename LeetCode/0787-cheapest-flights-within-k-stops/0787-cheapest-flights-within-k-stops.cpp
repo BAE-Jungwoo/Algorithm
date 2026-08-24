@@ -1,31 +1,25 @@
-#include <queue>
-#include <tuple>
-#include <vector>
-#include <climits>
-using namespace std;
-
 class Solution {
    public:
 	vector<pair<int, int>> graph[101];
-	int dist[101][101];
+	int dist[101][101];	 // <도시, 그 도시까지 탄 비행기 수>
 
-	void dijkstra(int& src, int& n, int& dst, int& k) {
+	void dijkstra(int& src, int& dst, int& k) {
 		priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>>> pq;
-		pq.push({0, src, 0});  // <비용, 도시, 경유지 수>
-		dist[src][0] = 0;	   // <도시, 경유지 수>
+		pq.push({0, src, 0});  // <누적 비용, 도시, 탄 비행기 수>
+		dist[src][0] = 0;
 
 		while (!pq.empty()) {
-			int price = get<0>(pq.top());
-			int city = get<1>(pq.top());
-			int stop = get<2>(pq.top());
+			int price = get<0>(pq.top());  // 누적 비용
+			int city = get<1>(pq.top());   // 현재 도시
+			int stop = get<2>(pq.top());   // 탄 비행기 수
 			pq.pop();
 
 			if (city == dst) return;
 			if (stop > k) continue;
 
 			for (auto& next : graph[city]) {
-				int nextCity = get<0>(next);
-				int nextPrice = get<1>(next);
+				int nextCity = get<0>(next);   // 다음 도시
+				int nextPrice = get<1>(next);  // 다음 도시까지의 비용
 				if (dist[nextCity][stop + 1] > price + nextPrice) {
 					dist[nextCity][stop + 1] = price + nextPrice;
 					pq.push({dist[nextCity][stop + 1], nextCity, stop + 1});
@@ -42,11 +36,10 @@ class Solution {
 		}
 
 		for (auto& flight : flights) {
-			int from = flight[0], to = flight[1], price = flight[2];
-			graph[from].push_back({to, price});
+			graph[flight[0]].push_back({flight[1], flight[2]});
 		}
 
-		dijkstra(src, n, dst, k);
+		dijkstra(src, dst, k);
 
 		int answer = INT_MAX;
 		for (int i = 0; i <= k + 1; i++) {
