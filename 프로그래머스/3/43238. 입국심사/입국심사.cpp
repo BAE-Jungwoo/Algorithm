@@ -11,7 +11,7 @@ long long solution(int n, vector<int> times) {
         long long mid = (left + right) / 2;
         long long total = 0;  // mid 시간동안 처리할 수 있는 사람 수
         for (int i = 0; i < times.size(); i++) {
-			total += mid / times[i];  // mid 시간동안 처리할 수 있는 사람 수
+			total += mid / times[i]; 
 		}
 		if (total >= n) {
 			answer = mid;
