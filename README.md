@@ -19,12 +19,18 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0045-jump-game-ii](https://github.com/BAE-Jungwoo/Algorithm/tree/main/0045-jump-game-ii/) | Medium |
+| [0053-maximum-subarray](https://github.com/BAE-Jungwoo/Algorithm/tree/main/0053-maximum-subarray/) | Medium |
 ## Dynamic Programming
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0045-jump-game-ii](https://github.com/BAE-Jungwoo/Algorithm/tree/main/0045-jump-game-ii/) | Medium |
+| [0053-maximum-subarray](https://github.com/BAE-Jungwoo/Algorithm/tree/main/0053-maximum-subarray/) | Medium |
 ## Greedy
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0045-jump-game-ii](https://github.com/BAE-Jungwoo/Algorithm/tree/main/0045-jump-game-ii/) | Medium |
+## Divide and Conquer
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0053-maximum-subarray](https://github.com/BAE-Jungwoo/Algorithm/tree/main/0053-maximum-subarray/) | Medium |
 <!---LeetCode Topics End-->
