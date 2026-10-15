@@ -19,9 +19,8 @@ int solution(int k, vector<int> tangerine) {
 		}
         else {
             answer++;
-            break;
+			return answer;
 		}
 		j++;
 	}
-    return answer;
 }
