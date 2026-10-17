@@ -1,4 +1,3 @@
-#include <iostream>
 #include <string>
 #include <vector>
 #include <map>
@@ -29,14 +28,10 @@ vector<int> solution(vector<int> fees, vector<string> records) {
         int cost = fees[1];
         int extra = total - fees[0]; // 기본 시간 초과
         
-        cout << extra<<endl;
         if(extra > 0) {
             cost += ((extra + fees[2] - 1) / fees[2]) * fees[3];
-        }
-            
+        }    
         answer.push_back(cost);
     }
-
-    
     return answer;
 }
